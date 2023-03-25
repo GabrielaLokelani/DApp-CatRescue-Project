@@ -290,10 +290,13 @@ $(document).ready(function() {
     });
   
     $("#linkGetSpecificCat").click(function() {
-      // $("#viewGetSpecificCat div").remove();
       showView("viewGetSpecificCat");
       viewGetSpecificCat();
     });  
+
+    $("#linkDonate").click(function() {
+      showView("viewDonateToCatRescue");
+    });
   
   
     // Attach AJAX "loading" event listener
@@ -331,6 +334,7 @@ $(document).ready(function() {
     $("#catUploadButton").click(rescueCat);
     $("#catAdoptButton").click(adoptCat);
     $("#catViewButton").click(viewGetSpecificCat);
+    $("#donationButton").click(viewDonateToCatRescue);
   
     // === User Interface Interactions End ===
   
@@ -370,7 +374,7 @@ $(document).ready(function() {
             let available = $("#CatAvailabilityForUpload").val();
             contract.add(catName, catGender, catAge, catDescription, ipfsHash, available, (error, txHash) => {
               if (error) {
-                showError("Smart contract call failed: " + error);
+                showError("Smart contract call failed to rescue cat into the shelter: " + error);
                 return;
               }
   
@@ -406,7 +410,7 @@ $(document).ready(function() {
       let index = $("#catIndexForAdoption").val();
       contract.adopt(customerName, customerGender, customerAge, catName, index, (error, txHash) => {
         if (error) {
-          showError("Smart contract call failed: " + error);
+          showError("Smart contract call failed to adopt: " + error);
           return;
         }
   
@@ -431,7 +435,7 @@ $(document).ready(function() {
   
       contract.getCatsCount((err, res) => {
         if(err) {
-          showError("Smart contract failed: " + err);
+          showError("Smart contract failed to get cat's count: " + err);
           return;
         }
   
@@ -444,7 +448,7 @@ $(document).ready(function() {
           for (let index = 0; index < catsCount; index++) {
             contract.getCat(index, (error, result) => {
               if (error) {
-                showError("Smart contract failed: " + error);
+                showError("Smart contract failed to retrieve all cals: " + error);
                 return;
               }
               let catName = result[0];
@@ -474,7 +478,6 @@ $(document).ready(function() {
       });
     }
   
-  
     // ========== GET A SPECIFIC CAT ===========
   
     function viewGetSpecificCat() {
@@ -486,16 +489,15 @@ $(document).ready(function() {
       let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
   
       let index = Number($("#catIndexForView").val());
-      // console.log(typeof index);
-      // console.log(typeof Number(index));
-      // console.log("This is just index", index);
+
       catsIndex = Number(index);
-      console.log("This is cats index", catsIndex);
+      // console.log("This is cats index", catsIndex);
+
       let html = $("<div>");
   
       contract.getCat(catsIndex, (error, result) => {
         if (error) {
-          showError("Smart contract failed " + error);
+          showError("Smart contract failed to view a specific cat: " + error);
           return;
         }
         let catName = result[0];
@@ -518,6 +520,34 @@ $(document).ready(function() {
       });
       html.append("</div>");
       $("#viewGetSpecificCat").append(html);
+    }
+
+    // ========== DONATE TO THE CAT RESCUE ===========
+
+    function viewDonateToCatRescue() {
+      if (typeof web3 === "undefined") {
+        showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+        return;
+      }
+  
+      let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
+
+      let index = Number($("#amountToDonate").val());
+      donationValue = Number(index);
+
+      contract.donate(donationValue, (error, TxHash) => {
+        if (error) {
+          showError("Smart contract failed to donate: " + error);
+          return;
+        }
+
+        if (TxHash) {
+          showInfo(
+            `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${txHash}`
+          );
+          return;
+        }        
+      });
     }
   
   });

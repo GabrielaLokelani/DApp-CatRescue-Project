@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cat Shelter DApp</title>
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <!-- The legacy-web3 script must run BEFORE your other scripts. -->
+    <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+    <script src="/lib/ipfs-26.1.2.dist.js"></script>
+    <script src="/lib/jquery-3.1.1.min.js"></script>
+    <script src="/index.js"></script>
+</head>
+
+<body>
+    <header id="menu">
+        <a href="#" id="linkHome">Home</a>
+        <a href="#" id="linkAddCat">Shelter Cat</a>
+        <a href="#" id="linkGetCats">View All Cats</a>
+        <a href="#" id="linkGetSpecificCat">View Specific Cats</a>
+        <a href="#" id="linkAdoptCat">Adopt Cat</a>
+    </header>
+
+    <main>
+        <section id="loadingBox">Loading ...</section>
+
+        <section id="infoBox">
+            <header>x</header>
+            <p>Info</p>
+        </section>
+
+        <section id="errorBox">
+            <header>x</header>
+            <p>Error</p>
+        </section>
+
+        <section id="viewHome">
+            <h1>Cat Rescue Shelter</h1>
+            Welcome to the "Cat Rescue" DApp. This distributed app runs on the Ethereum blockchain network and holds a shelter
+            of cats as Solidity smart contract.
+            <ul>
+                <li>The shelter keeps images of each cat in the shelter along with their name, age, gender, short description, and their adoption availability.</li>
+                <li>
+                    <b>Contract owner</b> can submit new cats to be stored on the blockchain and in the shelter.</li>
+                <li>
+                    <b>Users</b> can view the existence of certain cats in the shelter.</li>
+            </ul>
+        </section>
+
+        <section id="viewAddCat">
+            <h1>Add a cat to the rescue shelter!</h1>
+            <p>Contract owners can rescue (upload) new cats to the "Cat Rescue" smart contract on the Ethereum
+                blockchain decentralized network.</p>
+                <label for="catname">Cat Name:</label>
+                <input type="text" id="CatNameForUpload" name="catname"/> 
+                <label for="catgender">Cat Gender:</label>
+                <input type="text" id="CatGenderForUpload" name="catgender"/> 
+                <label for="catage">Cat Age:</label>
+                <input type="text" id="CatAgeForUpload" name="catage"/>
+                <label for="catdescription">Cat Description:</label>
+                <input type="text" id="CatDescriptionForUpload" name="catdescription"/> 
+                <label for="catavailability">Cat Availability:</label>
+                <input type="text" id="CatAvailabilityForUpload" name="catavailability"/>     
+            <input type="file" id="catDocumentForUpload" />
+            <br/>
+            <input type="button" id="catUploadButton" value="Submit" />
+        </section>
+
+        <section id="viewGetCats">
+            <h1>View All Our Wonderful Cats</h1>
+            <p>Blockchain users can view cats in the shelter on the Ethereum network.</p>
+        </section>
+
+        <section id="viewGetSpecificCat">
+            <h1>View A Certain Special Cat</h1>
+            <p>Blockchain users can view cats in the shelter on the Ethereum network.</p>
+            <label for="catIndexView">Cat's Index:</label>
+            <input type="text" id="catIndexForView" name="catIndexView"/> 
+            <br/>
+            <input type="button" id="catViewButton" value="Submit" />
+        </section>
+
+        <section id="viewAdoptCat">
+            <h1>Adopt Cats</h1>
+            <p>Blockchain users can adopt cats in the shelter on the Ethereum network.</p>
+            <p>To get started, please fill in some information about you and which of these fluffy felines you want to adopt</p>
+            <label for="customername">Your Name:</label>
+            <input type="text" id="customerNameForAdoption" name="customername"/> 
+            <label for="customergender">Your Gender:</label>
+            <input type="text" id="customerGenderForAdoption" name="customergender"/> 
+            <label for="customerage">Your Age:</label>
+            <input type="text" id="customerAgeForAdoption" name="customerage"/>
+            <label for="catNameAdopt">Cat's Name to Adopt:</label>
+            <input type="text" id="catNameForAdoption" name="catNameAdopt"/> 
+            <label for="catIndexAdopt">Cat's Index:</label>
+            <input type="text" id="catIndexForAdoption" name="catIndexAdopt"/> 
+            <br/>
+            <input type="button" id="catAdoptButton" value="Submit" />
+        </section>
+    </main>
+
+    <footer>Cat Rescue - JavaScript & Ethereum DApp</footer>
+</body>
+
+</html>

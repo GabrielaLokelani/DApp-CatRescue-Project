@@ -297,6 +297,10 @@ $(document).ready(function() {
     $("#linkDonate").click(function() {
       showView("viewDonateToCatRescue");
     });
+
+    $("#linkReturnCat").click(function() {
+      showView("viewReturnCat");
+    });
   
   
     // Attach AJAX "loading" event listener
@@ -335,6 +339,7 @@ $(document).ready(function() {
     $("#catAdoptButton").click(adoptCat);
     $("#catViewButton").click(viewGetSpecificCat);
     $("#donationButton").click(viewDonateToCatRescue);
+    $("#catReturnButton").click(viewReturnCat);
   
     // === User Interface Interactions End ===
   
@@ -549,5 +554,11 @@ $(document).ready(function() {
         }        
       });
     }
+
+        // ========== RETURN CAT TO THE CAT RESCUE ===========
+
+        function viewReturnCat() {
+
+        }
   
   });

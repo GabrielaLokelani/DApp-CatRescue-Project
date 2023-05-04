@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-  font-family: Lato;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
 
@@ -66,13 +66,13 @@ section h1 {
 }
 
 #loadingBox {
-  background: #7cb3e9;
+  background: #D8BFD8;
 }
 #infoBox {
-  background: #393;
+  background: #F8C8DC;
 }
 #errorBox {
-  background: #f50;
+  background: #E0115F;
 }
 
 footer {

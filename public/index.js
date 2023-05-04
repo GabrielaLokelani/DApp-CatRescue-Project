@@ -548,7 +548,7 @@ $(document).ready(function() {
 
         if (TxHash) {
           showInfo(
-            `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${txHash}`
+            `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${TxHash}`
           );
           return;
         }        
@@ -558,7 +558,27 @@ $(document).ready(function() {
         // ========== RETURN CAT TO THE CAT RESCUE ===========
 
         function viewReturnCat() {
+          if (typeof web3 === "undefined") {
+            showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+            return;
+          }
+      
+          let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
 
+          let catIndex = $("#catIndexForReturn").val();
+
+          contract.returnAnimalToShelter(catIndex, (error, txHash) => {
+            if (error) {
+              showError("Smart contract failed to return cat: " + error);
+              return;
+            }
+
+            if (txHash) {
+              showInfo(
+                `Your return is successful, were sorry the adoption did not work out. Please consider adopting one of our other amazing kitties! Here is the Transaction Hash: ${txHash}`
+              )
+            }
+          });
         }
   
   });

@@ -7,6 +7,6 @@ import '../public/CatRescue.sol';
 contract CatRescueTest {
     function testSettingOwner() public {
         CatRescue catrescue = new CatRescue();
-        Assert.equal(catrescue.owner(), address(this), 'The owner is different from the deployer!')
+        Assert.equal(catrescue.owner(), address(this), 'The owner is different from the deployer!');
     }
 }

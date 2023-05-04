@@ -10,3 +10,5 @@ contract CatRescueTest {
         Assert.equal(catrescue.owner(), address(this), 'The owner is different from the deployer!');
     }
 }
+
+// testing push ability

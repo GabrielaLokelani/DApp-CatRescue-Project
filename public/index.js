@@ -5,7 +5,7 @@ $(document).ready(function() {
       alert("Access Denied.");
     }
   
-    const catRescueContractAddress = "0x6D2d4e96A4A8Ff34fDC8b58019Bf061505cf5861";
+    const catRescueContractAddress = "0x88aA08A54212B91f7Dcc12d95CB51C9E4F7a8c3a";
   
     const catRescueContractABI = [
       {
@@ -540,13 +540,13 @@ $(document).ready(function() {
       let index = Number($("#amountToDonate").val());
       donationValue = Number(index);
 
-      contract.donate(donationValue, (error, TxHash) => {
+      contract.donate(donationValue, (error, txHash) => {
         if (error) {
           showError("Smart contract failed to donate: " + error);
           return;
         }
 
-        if (TxHash) {
+        if (txHash) {
           showInfo(
             `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${txHash}`
           );
@@ -558,7 +558,27 @@ $(document).ready(function() {
         // ========== RETURN CAT TO THE CAT RESCUE ===========
 
         function viewReturnCat() {
+          if (typeof web3 === "undefined") {
+            showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+            return;
+          }
+      
+          let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
 
+          let catIndex = $("#catIndexForReturn").val();
+
+          contract.returnAnimalToShelter(catIndex, (error, txHash) => {
+            if (error) {
+              showError("Smart contract failed to return cat: " + error);
+              return;
+            }
+
+            if (txHash) {
+              showInfo(
+                `Your return is successful, were sorry the adoption did not work out. Please consider adopting one of our other amazing kitties! Here is the Transaction Hash: ${txHash}`
+              )
+            }
+          })
         }
   
   });

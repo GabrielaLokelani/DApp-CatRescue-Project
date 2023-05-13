@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Gabriela Kadzielawa 2023
 // compiler version must be greater than or equal to 0.8.3 and less than 0.9.0
-pragma solidity ^0.8.3;
+pragma solidity >=0.8.3;
 
 contract CatRescue {
 

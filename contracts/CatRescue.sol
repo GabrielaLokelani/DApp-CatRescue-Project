@@ -4,7 +4,7 @@ pragma solidity >=0.8.3;
 
 contract CatRescue {
 
-    address owner = msg.sender;
+    address payable public owner;
     uint balance = address(this).balance;
     mapping(address => uint) adopted;
     uint returnExpiration;
@@ -34,6 +34,7 @@ contract CatRescue {
     mapping (address => Customer) private Customers;
 
     constructor() public {
+        owner = payable(msg.sender);
         adopted[msg.sender] = 0;
     }
 
@@ -64,7 +65,7 @@ contract CatRescue {
         return true;
     }
 
-    function returnAnimalToShelter(uint catIndex) public returns(bool returnSuccess) {
+    function returnCatToShelter(uint catIndex) public returns(bool returnSuccess) {
         returnExpiration = Customers[msg.sender].adoptionTime + 1 days;
         require(block.timestamp <= returnExpiration, "Returns must be within 24 hours of adoption!");
 

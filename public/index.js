@@ -567,7 +567,7 @@ $(document).ready(function() {
 
           let catIndex = $("#catIndexForReturn").val();
 
-          contract.returnAnimalToShelter(catIndex, (error, txHash) => {
+          contract.returnCatToShelter(catIndex, (error, txHash) => {
             if (error) {
               showError("Smart contract failed to return cat: " + error);
               return;

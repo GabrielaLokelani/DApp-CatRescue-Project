@@ -88,9 +88,9 @@ contract CatRescue {
         return(specificCat.catsName, specificCat.gender, specificCat.age, specificCat.description, specificCat.hash, specificCat.available);
     }
 
-    function getReceipt() public view returns(string memory customers_name, uint customers_age, string memory customers_gender, string memory customers_pet) {
-        return(Customers[msg.sender].name, Customers[msg.sender].age, Customers[msg.sender].gender, Customers[msg.sender].pet);
-    }
+    // function getReceipt() public view returns(string memory customers_name, uint customers_age, string memory customers_gender, string memory customers_pet) {
+    //     return(Customers[msg.sender].name, Customers[msg.sender].age, Customers[msg.sender].gender, Customers[msg.sender].pet);
+    // }
 
     function getDonationBalance() public view returns(uint donationTotal) {
         return balance;

@@ -58,6 +58,14 @@ module.exports = {
       // websockets: true        // Enable EventEmitter interface for web3 (default: false)
     // },
 
+    coverage: {
+      host: "localhost",
+      network_id: "*",
+      port: 8555,
+      gas: 0xfffffffffff,
+      gasPrice: 0x01
+    },
+
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     // ropsten: {
@@ -78,10 +86,10 @@ module.exports = {
   },
 
   // Set default mocha options here, use special reporters etc.
-  mocha: {
-    // timeout: 100000
-  },
-
+  // mocha: {
+  //   // timeout: 100000
+  // },
+  plugins: ["solidity-coverage"],
   // Configure your compilers
   compilers: {
     solc: {

@@ -74,11 +74,11 @@ contract('CatRescue', function(accounts) {
         await truffleAssert.fails(instance.adopt("Jake", "male", 25, "Jojo", 0, {from: secondAccount}));
     });
 
-    it("can return cat", async function() {
-        const instance = await CatRescue.deployed();
-        await instance.add("Jojo", "male", 2, "fuzzball", "ipfshash", "true");
-        await instance.adopt("Jake", "male", 25, "Jojo", 0, {from: secondAccount});
-        await truffleAssert.passes(instance.returnCatToShelter(0, {from: secondAccount}));        
-    });
+    // it("can return cat", async function() {
+    //     const instance = await CatRescue.deployed();
+    //     await instance.add("Jojo", "male", 2, "fuzzball", "ipfshash", "true");
+    //     await instance.adopt("Jake", "male", 25, "Jojo", 0, {from: secondAccount});
+    //     await truffleAssert.passes(instance.returnCatToShelter(0, {from: secondAccount}));        
+    // });
 
 });

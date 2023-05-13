@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/CatRescue.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> CatRescue.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.83% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>6/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.78% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.37% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>19/27</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: Gabriela Kadzielawa 2023
+// compiler version must be greater than or equal to 0.8.3 and less than 0.9.0
+pragma solidity &gt;=0.8.3;
+&nbsp;
+contract CatRescue {
+&nbsp;
+    address payable public owner;
+    uint balance = address(this).balance;
+    mapping(address =&gt; uint) adopted;
+    uint returnExpiration;
+&nbsp;
+    modifier isAllowed(uint catIndex) {
+        require(cat[catIndex].available == true, "Sorry! This cat has been adopted already");
+        _;
+    } 
+&nbsp;
+    struct Cat {
+        string catsName;
+        string gender;
+        uint age;
+        string description;
+        string hash;
+        bool available;   
+    }
+    Cat[] public cat;
+&nbsp;
+    struct Customer {
+        string gender;
+        uint age;
+        string name;
+        string pet;
+        uint adoptionTime;
+    }
+    mapping (address =&gt; Customer) private Customers;
+&nbsp;
+    constructor() public {
+        owner = payable(msg.sender);
+        adopted[msg.sender] = 0;
+    }
+&nbsp;
+    function add(string memory _catName, string memory _catGender, uint _catAge, string memory _description, string memory _hash, bool _available) public {
+        require(msg.sender == owner, "Sorry! Only the owner may shelter cats.");
+&nbsp;
+        cat.push(Cat({
+            catsName : _catName,
+            gender : _catGender,
+            age : _catAge,
+            description : _description,
+            hash : _hash,
+            available : _available
+        }));
+    }
+&nbsp;
+    function adopt(string memory personName, string memory personGender, uint personAge, string memory _catsName, uint catIndex) public isAllowed(catIndex) returns(bool adoptionSuccess) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(adopted[msg.sender] == 0, "You already adopted!");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(keccak256(abi.encodePacked(_catsName)) == keccak256(abi.encodePacked(cat[catIndex].catsName)), "Sorry! Cat's name does not match with the index given");
+&nbsp;
+        Customers[msg.sender].gender = personGender;
+        Customers[msg.sender].age = personAge;
+        Customers[msg.sender].name = personName;
+        Customers[msg.sender].pet = _catsName;
+        cat[catIndex].available = false;
+        Customers[msg.sender].adoptionTime = block.timestamp;
+        adopted[msg.sender]++;
+        return true;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function returnCatToShelter(uint catIndex) public returns(bool returnSuccess) {</span>
+<span class="cstat-no" title="statement not covered" >        returnExpiration = Customers[msg.sender].adoptionTime + 1 days</span>;
+<span class="cstat-no" title="statement not covered" >        require(block.timestamp &lt;= returnExpiration, "Returns must be within 24 hours of adoption!")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        Customers[msg.sender].pet = "RETURNED"</span>;
+<span class="cstat-no" title="statement not covered" >        cat[catIndex].available = true</span>;
+        adopted[msg.sender]--;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    function donate(uint256 value) public payable {
+        balance += value;
+    }
+&nbsp;
+    function getCatsCount() public view returns (uint256 catCount) {
+        return cat.length;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getCat(uint256 catIndex) public view returns(string memory name, string memory gender, uint age, string memory description, string memory _hash, bool available) {</span>
+<span class="cstat-no" title="statement not covered" >        Cat memory specificCat = cat[catIndex];</span>
+<span class="cstat-no" title="statement not covered" >        return(specificCat.catsName, specificCat.gender, specificCat.age, specificCat.description, specificCat.hash, specificCat.available);</span>
+    }
+&nbsp;
+    // function getReceipt() public view returns(string memory customers_name, uint customers_age, string memory customers_gender, string memory customers_pet) {
+    //     return(Customers[msg.sender].name, Customers[msg.sender].age, Customers[msg.sender].gender, Customers[msg.sender].pet);
+    // }
+&nbsp;
+    function getDonationBalance() public view returns(uint donationTotal) {
+        return balance;
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri May 12 2023 23:22:39 GMT-1000 (Hawaii-Aleutian Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

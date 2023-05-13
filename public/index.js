@@ -548,7 +548,7 @@ $(document).ready(function() {
 
         if (txHash) {
           showInfo(
-            `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${txHash}`
+            `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${TxHash}`
           );
           return;
         }        
@@ -578,7 +578,7 @@ $(document).ready(function() {
                 `Your return is successful, were sorry the adoption did not work out. Please consider adopting one of our other amazing kitties! Here is the Transaction Hash: ${txHash}`
               )
             }
-          })
+          });
         }
   
   });

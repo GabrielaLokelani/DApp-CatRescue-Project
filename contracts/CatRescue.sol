@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Gabriela Kadzielawa 2023
 // compiler version must be greater than or equal to 0.8.3 and less than 0.9.0
-pragma solidity >=0.8.3;
+pragma solidity >=0.8.7;
 
 contract CatRescue {
 
     address payable public owner;
-    uint balance = address(this).balance;
+    uint256 balance = address(this).balance;
     mapping(address => uint) adopted;
     uint returnExpiration;
 
@@ -79,6 +79,16 @@ contract CatRescue {
         balance += value;
     }
 
+    function getDonationBalance() public view returns(uint256 donationTotal) {
+        return balance;
+    }
+
+    function withdrawDonations() public payable {
+        require(msg.sender == owner, "Sorry! Only the owner may collect donations.");
+        owner.balance + balance;
+        balance = 0;
+    }
+
     function getCatsCount() public view returns (uint256 catCount) {
         return cat.length;
     }
@@ -91,8 +101,4 @@ contract CatRescue {
     // function getReceipt() public view returns(string memory customers_name, uint customers_age, string memory customers_gender, string memory customers_pet) {
     //     return(Customers[msg.sender].name, Customers[msg.sender].age, Customers[msg.sender].gender, Customers[msg.sender].pet);
     // }
-
-    function getDonationBalance() public view returns(uint donationTotal) {
-        return balance;
-    }
 }

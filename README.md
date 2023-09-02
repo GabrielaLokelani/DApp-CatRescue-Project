@@ -30,21 +30,21 @@ Let's rescue these cats folks!
 **STARTING THE APP**
 1. Open the repo locally and open the commnand line at the project file path
    - Install all the dependencies that are listed above
-     - `npm install`
+     - Run `npm install`
    - Check to make sure dependencies got installed (all will be listed but IPFS and MetaMask, that will be done next)
 2. Download IPFS using the link provided above
    - Install IPFS either into your file path or elsewhere on your machine and follow the download instructions
    - Open IPFS in a separate command line under the path it was downloaded to 
-     - `ipfs`
+     - Run `ipfs`
    - Locate and show the ipfs config file to see if `"Access-Control-Allow-Origin":["*"]`
-     - `ipfs config show`
+     - Run `ipfs config show`
    - If it does not, set the API HTTP CORS header to `"Access-Control-Allow-Origin":["*"]` so there will be CORS errors in the browser
-     - `ipfs config edit`
+     - Run `ipfs config edit`
      - Check the config file again to make sure the edit was made
 3. Start the IPFS Daemon and it will say `Daemon is ready`
-   - `ipfs deamon`
+   - Run `ipfs deamon`
 4. Start the Ganache Client in a seperate terminal in the project file path
-   - `ganache`
+   - Run `ganache`
    - Take note of the RPC server started listing the 10 Accounts with their resepctive private key
 5. Download MetaMask Chrome browser extension and login
    - Once logged-in, switch to the Local Network of 8545 which connects it to Ganache
@@ -54,12 +54,13 @@ Let's rescue these cats folks!
 6. Deploy the Solidity smart contract
    - Run `npx truffle migrate` `npx truffle deploy`
    - Make sure in the public/index.js file line 8 the catRescueContractAddress is equal to the deployed contract address
-7. Start and run the application
-   - run `npm start`
+7. Start and run the application in a separate terminal in the project file path
+   - Run `npm start`
 
 **RUNNING TEST COVERAGE**
+
 8. To run solidity coverage to see our test coverage (should cover 100% of lines)
-   - run `npx truffle run coverage`
+   - Run `npx truffle run coverage`
 
 
 ### Usage Instructions

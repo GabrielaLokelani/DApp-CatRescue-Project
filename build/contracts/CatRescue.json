@@ -48,7 +48,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -61,7 +62,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -170,7 +172,8 @@
       "name": "donate",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [],
@@ -183,14 +186,16 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
       "name": "withdrawDonations",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [],
@@ -203,7 +208,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -247,7 +253,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_catName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_catGender\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_catAge\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_hash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_available\",\"type\":\"bool\"}],\"name\":\"add\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"personName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"personGender\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"personAge\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_catsName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"catIndex\",\"type\":\"uint256\"}],\"name\":\"adopt\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"adoptionSuccess\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"cat\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"catsName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"gender\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"age\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"hash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"donate\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"catIndex\",\"type\":\"uint256\"}],\"name\":\"getCat\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"gender\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"age\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_hash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCatsCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"catCount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDonationBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"donationTotal\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"catIndex\",\"type\":\"uint256\"}],\"name\":\"returnCatToShelter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"returnSuccess\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawDonations\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/gabrielakadzielawa/Desktop/CatRescue copy/DApp-CatRescue-Project/contracts/CatRescue.sol\":\"CatRescue\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/gabrielakadzielawa/Desktop/CatRescue copy/DApp-CatRescue-Project/contracts/CatRescue.sol\":{\"keccak256\":\"0xe6d657ad7cd7e0f92a939a4fe518e0366a2ea896dc994739f3fc12e212f7a2a5\",\"license\":\"Gabriela Kadzielawa 2023\",\"urls\":[\"bzz-raw://98c6ecb4427f66dd07e6a4ea8fb9dee30b8861f956019679e629d42d4ede5993\",\"dweb:/ipfs/QmdG1rQsopHVAXwZLbNqW11rTu4uG9D13Qq6iV3TKo8yaa\"]}},\"version\":1}",
@@ -18961,10 +18968,29 @@
       "links": {},
       "address": "0xE318f4771f705890Ec5a057126e6a5B0Bf4b0644",
       "transactionHash": "0xe892860b7141aa8c916825115276b6e754754acda15786a3cd5bddf2c33ecca4"
+    },
+    "1693802133646": {
+      "events": {},
+      "links": {},
+      "address": "0x03FE72e4079cA315E7eBC8650BD352A22f276880",
+      "transactionHash": "0xab32fb8dfdc434c3db4cab7c87177307f8bb9e99141e5ccccd7b0eab7fa53046"
+    },
+    "1693804488153": {
+      "events": {},
+      "links": {},
+      "address": "0xB538812DD7d927C7BdffbB0e9115055B161047a0",
+      "transactionHash": "0x754824f5feaf8b8bb259d5710ca7a076f80af3938089245afaa954a7345e3276"
+    },
+    "1693805013167": {
+      "events": {},
+      "links": {},
+      "address": "0x2004b261DCBA4Ea8B2C4cC170E26D82d5beCE5Ee",
+      "transactionHash": "0xcf0e812399f6d45894c0948bfbc2d2f3d36f093aebbc82b4e99e393de89c4ce2"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2023-09-02T11:44:06.389Z",
+  "updatedAt": "2023-09-04T05:23:51.115Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

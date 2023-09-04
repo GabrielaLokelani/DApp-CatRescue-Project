@@ -44,7 +44,7 @@ Let's rescue these cats folks!
 3. Start the IPFS Daemon and it will say `Daemon is ready`
    - Run `ipfs deamon`
 4. Start the Ganache Client in a seperate terminal in the project file path
-   - Run `ganache`
+   - Run `ganache-cli` or `ganache`
    - Take note of the RPC server started listing the 10 Accounts with their resepctive private key
 5. Download MetaMask Chrome browser extension and login
    - Once logged-in, switch to the Local Network of 8545 which connects it to Ganache
@@ -52,7 +52,7 @@ Let's rescue these cats folks!
      - One of the keys is to be the contract creator account (the cat rescue owner)
      - The other key is a user (a patron of the cat rescue)
 6. Deploy the Solidity smart contract
-   - Run `npx truffle migrate` `npx truffle deploy`
+   - Run `npx truffle migrate`
    - Make sure in the public/index.js file line 8 the catRescueContractAddress is equal to the deployed contract address
 7. Start and run the application in a separate terminal in the project file path
    - Run `npm start`

@@ -5,7 +5,7 @@ $(document).ready(function() {
       alert("Access Denied.");
     }
   
-    const catRescueContractAddress = "0x88aA08A54212B91f7Dcc12d95CB51C9E4F7a8c3a";
+    const catRescueContractAddress = "0x2004b261dcba4ea8b2c4cc170e26d82d5bece5ee";
   
     const catRescueContractABI = [
       {
@@ -449,13 +449,17 @@ $(document).ready(function() {
         
   
         if (catsCount > 0) {
-          let html = $("<div>");
+          let html = $(`<div>`);
+          let html1 = $(`<div class="row">`);
+          html.append(html1);
           for (let index = 0; index < catsCount; index++) {
             contract.getCat(index, (error, result) => {
               if (error) {
                 showError("Smart contract failed to retrieve all cals: " + error);
                 return;
               }
+              let catsIndex = index;
+              console.log("this is the cats index: " + catsIndex);
               let catName = result[0];
               console.log("this is result[0] : ", result[0]);
               let catGender = result[1];
@@ -463,18 +467,36 @@ $(document).ready(function() {
               let catDescription = result[3];
               let ipfsHash = result[4];
               let available = result[5];
-              let div = $("<div>");
+              // let divRow = $(`<div class="row">`);
+              // let divCol = $(`<div class="col-sm-4">`);
+              let html2 = $(`<div class="col-sm-4">`);
+              let div = $(`<div class="card" style="background-color: #e0e0e0;">`);
+              let divBody = $(`<div class="card-body">`);
               let url = `http://localhost:8080/ipfs/${ipfsHash}`;
-  
-              div.append($(`<p>Cat's Name: ${catName}<p>`));
-              div.append($(`<p>Cat's Gender: ${catGender}<p>`));
-              div.append($(`<p>Cat's Age: ${catAge}<p>`));
-              div.append($(`<p>Cat's Description: ${catDescription}<p>`));
-              div.append($(`<p>Cat's Available for Adoption: ${available}<p>`));
-              div.append($(`<img src="${url}" />`));
-              html.append(div);
+              
+              // divRow.append(divCol);
+              div.append($(`<img src="${url}" class="card-img-top" style="max-height: 430px; width: 450px;" alt="${catName}'s image"/>`));
+              divBody.append($(`<h5 class="card-title">Cat's Name: ${catName}<h5>`));
+              divBody.append($(`<p class="card-text">Cat's Gender: ${catGender}<p>`));
+              divBody.append($(`<p class="card-text">Cat's Age: ${catAge}<p>`));
+              divBody.append($(`<p class="card-text">Cat's Description: ${catDescription}<p>`));
+              divBody.append($(`<p class="card-text">Cat's Available for Adoption: ${available}<p>`));
+              divBody.append($(`<p class="card-text">Cat's Index: ${catsIndex}<p>`));
+              divBody.append("</div>");
+              div.append(divBody);
+              div.append("</div>");
+              // divCol.append(div);
+              // divCol.append("</div>");
+              // divRow.append("</div>");
+              html2.append(div);
+              html2.append("</div>");
+              html1.append(html2);
+              html.append(html1);
+              // html.append(div);  
             });
           }
+    
+          html1.append("</div>");
           html.append("</div>");
           $("#viewGetCats").append(html);
         } else {
@@ -498,7 +520,9 @@ $(document).ready(function() {
       catsIndex = Number(index);
       // console.log("This is cats index", catsIndex);
 
-      let html = $("<div>");
+      let html = $(`<div>`);
+      let html1 = $(`<div class="row">`);
+      html.append(html1);
   
       contract.getCat(catsIndex, (error, result) => {
         if (error) {
@@ -512,17 +536,28 @@ $(document).ready(function() {
         let catDescription = result[3];
         let ipfsHash = result[4];
         let available = result[5];
-        let div = $("<div>");
+        let html2 = $(`<div class="col-sm-5">`);
+        let div = $(`<div class="card" style="background-color: #e0e0e0;">`);
+        let divBody = $(`<div class="card-body">`);
         let url = `http://localhost:8080/ipfs/${ipfsHash}`;
   
-        div.append($(`<p>Cat's Name: ${catName}<p>`));
-        div.append($(`<p>Cat's Gender: ${catGender}<p>`));
-        div.append($(`<p>Cat's Age: ${catAge}<p>`));
-        div.append($(`<p>Cat's Description: ${catDescription}<p>`));
-        div.append($(`<p>Cat's Available for Adoption: ${available}<p>`));
-        div.append($(`<img src="${url}" />`));
-        html.append(div);      
+        div.append($(`<img src="${url}" class="card-img-top" style="max-height: 530px; width: 550px;" alt="${catName} image"/>`));
+        divBody.append($(`<h5 class="card-title">Cat's Name: ${catName}<h5>`));
+        divBody.append($(`<p class="card-text">Cat's Gender: ${catGender}<p>`));
+        divBody.append($(`<p class="card-text">Cat's Age: ${catAge}<p>`));
+        divBody.append($(`<p class="card-text">Cat's Description: ${catDescription}<p>`));
+        divBody.append($(`<p class="card-text">Cat's Available for Adoption: ${available}<p>`));
+        divBody.append($(`<p class="card-text">Cat's Index: ${catsIndex}<p>`));
+        divBody.append("</div>");
+        div.append(divBody);
+        div.append("</div>");
+        html2.append(div);
+        html2.append("</div>");
+        html1.append(html2);
+        html.append(html1);       
       });
+
+      html1.append("</div>");
       html.append("</div>");
       $("#viewGetSpecificCat").append(html);
     }
@@ -582,3 +617,50 @@ $(document).ready(function() {
         }
   
   });
+
+
+// ***** this has the original styling *****
+  // function viewGetSpecificCat() {
+  //   if (typeof web3 === "undefined") {
+  //     showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+  //     return;
+  //   }
+
+  //   let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
+
+  //   let index = Number($("#catIndexForView").val());
+
+  //   catsIndex = Number(index);
+  //   // console.log("This is cats index", catsIndex);
+
+  //   let html = $("<div>");
+
+  //   contract.getCat(catsIndex, (error, result) => {
+  //     if (error) {
+  //       showError("Smart contract failed to view a specific cat: " + error);
+  //       return;
+  //     }
+  //     let catName = result[0];
+  //     console.log("this is result[0]", result[0]);
+  //     let catGender = result[1];
+  //     let catAge = result[2];
+  //     let catDescription = result[3];
+  //     let ipfsHash = result[4];
+  //     let available = result[5];
+  //     let div = $(`<div class="card" style="max-width: 420px;">`);
+  //     let divBody = $(`<div class="card-body">`);
+  //     let url = `http://localhost:8080/ipfs/${ipfsHash}`;
+
+  //     div.append($(`<img src="${url}" class="card-img-top" style="height: 300px;" alt="${catName} image"/>`));
+  //     divBody.append($(`<h5 class="card-title">Cat's Name: ${catName}<h5>`));
+  //     divBody.append($(`<p class="card-text">Cat's Gender: ${catGender}<p>`));
+  //     divBody.append($(`<p class="card-text">Cat's Age: ${catAge}<p>`));
+  //     divBody.append($(`<p class="card-text">Cat's Description: ${catDescription}<p>`));
+  //     divBody.append($(`<p class="card-text">Cat's Available for Adoption: ${available}<p>`));
+  //     divBody.append($(`<p class="card-text">Cat's Index: ${catsIndex}<p>`));
+  //     div.append(divBody);
+  //     html.append(div);      
+  //   });
+  //   html.append("</div>");
+  //   $("#viewGetSpecificCat").append(html);
+  // }

@@ -5,9 +5,14 @@ $(document).ready(function() {
       alert("Access Denied.");
     }
   
-    const catRescueContractAddress = "0x2004b261dcba4ea8b2c4cc170e26d82d5bece5ee";
+    const catRescueContractAddress = "0x380B7AD926e048eDDFD0EB28E0d3E31c5636ac80";
   
     const catRescueContractABI = [
+      {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
       {
         "inputs": [
           {
@@ -21,9 +26,9 @@ $(document).ready(function() {
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint8",
             "name": "_catAge",
-            "type": "uint256"
+            "type": "uint8"
           },
           {
             "internalType": "string",
@@ -59,9 +64,9 @@ $(document).ready(function() {
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint8",
             "name": "personAge",
-            "type": "uint256"
+            "type": "uint8"
           },
           {
             "internalType": "string",
@@ -69,9 +74,9 @@ $(document).ready(function() {
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint8",
             "name": "catIndex",
-            "type": "uint256"
+            "type": "uint8"
           }
         ],
         "name": "adopt",
@@ -84,43 +89,6 @@ $(document).ready(function() {
         ],
         "stateMutability": "nonpayable",
         "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "value",
-            "type": "uint256"
-          }
-        ],
-        "name": "donate",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "catIndex",
-            "type": "uint256"
-          }
-        ],
-        "name": "returnAnimalToShelter",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "returnSuccess",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
       },
       {
         "inputs": [
@@ -143,9 +111,9 @@ $(document).ready(function() {
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint8",
             "name": "age",
-            "type": "uint256"
+            "type": "uint8"
           },
           {
             "internalType": "string",
@@ -170,8 +138,21 @@ $(document).ready(function() {
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "catIndex",
+            "name": "value",
             "type": "uint256"
+          }
+        ],
+        "name": "donate",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint8",
+            "name": "catIndex",
+            "type": "uint8"
           }
         ],
         "name": "getCat",
@@ -187,9 +168,9 @@ $(document).ready(function() {
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint8",
             "name": "age",
-            "type": "uint256"
+            "type": "uint8"
           },
           {
             "internalType": "string",
@@ -238,30 +219,41 @@ $(document).ready(function() {
       },
       {
         "inputs": [],
-        "name": "getReceipt",
+        "name": "owner",
         "outputs": [
           {
-            "internalType": "string",
-            "name": "customers_name",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "customers_age",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "customers_gender",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "customers_pet",
-            "type": "string"
+            "internalType": "address payable",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint8",
+            "name": "catIndex",
+            "type": "uint8"
+          }
+        ],
+        "name": "returnCatToShelter",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "returnSuccess",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "withdrawDonations",
+        "outputs": [],
+        "stateMutability": "payable",
         "type": "function"
       }
     ];
@@ -296,6 +288,10 @@ $(document).ready(function() {
 
     $("#linkDonate").click(function() {
       showView("viewDonateToCatRescue");
+    });
+
+    $("#linkOwnersControls").click(function() {
+      showView("viewOwnersControls");
     });
 
     $("#linkReturnCat").click(function() {
@@ -339,6 +335,8 @@ $(document).ready(function() {
     $("#catAdoptButton").click(adoptCat);
     $("#catViewButton").click(viewGetSpecificCat);
     $("#donationButton").click(viewDonateToCatRescue);
+    $("#donationTotalButton").click(viewOwnersControlsTotal);
+    $("#donationCollectButton").click(viewOwnersControlsWithdraw);
     $("#catReturnButton").click(viewReturnCat);
   
     // === User Interface Interactions End ===
@@ -575,6 +573,7 @@ $(document).ready(function() {
       let index = Number($("#amountToDonate").val());
       donationValue = Number(index);
 
+      // donate to the cat rescue
       contract.donate(donationValue, (error, txHash) => {
         if (error) {
           showError("Smart contract failed to donate: " + error);
@@ -586,8 +585,56 @@ $(document).ready(function() {
             `Congragulations! You have successfully donated ${donationValue} ETH to the Cat Rescue! The kitties appreciate your donation. Here is the Transaction Hash: ${TxHash}`
           );
           return;
-        }        
+        } 
       });
+    }
+
+    function viewOwnersControlsTotal() {
+      if (typeof web3 === "undefined") {
+        showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+        return;
+      }
+  
+      let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
+
+        // owner can get the donation balance
+        contract.getDonationBalance((error, result) => {
+          if (error) {
+            showError("Smart contract failed to get donation balance: " + error);
+            return;
+          }
+
+          if (result) {
+            showInfo(
+              `The Cat Rescue has a donation balance totalling ${result} ETH to the Cat Rescue!`
+            );
+            return;
+          }
+        });
+    }
+
+    function viewOwnersControlsWithdraw() {
+      if (typeof web3 === "undefined") {
+        showError("Please install Metamask to access the Ethereum Web3 API from your browser!");
+        return;
+      }
+  
+      let contract = web3.eth.contract(catRescueContractABI).at(catRescueContractAddress);
+
+          // owner of cat rescue can withdrawl donation balance
+          contract.withdrawDonations((error, txHash) => {
+            if (error) {
+              showError("Smart contract failed to withdraw donations: " + error);
+              return;
+            }
+
+            if (txHash) {
+              showInfo(
+                `Congragulations! You have successfully withdrawn the balance of the Cat Rescue donations! Here is the Transaction Hash: ${txHash}`
+              );
+              return;
+            } 
+          });
     }
 
         // ========== RETURN CAT TO THE CAT RESCUE ===========

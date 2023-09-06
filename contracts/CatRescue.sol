@@ -9,7 +9,7 @@ contract CatRescue {
     mapping(address => uint) adopted;
     uint returnExpiration;
 
-    modifier isAllowed(uint catIndex) {
+    modifier isAllowed(uint8 catIndex) {
         require(cat[catIndex].available == true, "Sorry! This cat has been adopted already");
         _;
     } 
@@ -17,7 +17,7 @@ contract CatRescue {
     struct Cat {
         string catsName;
         string gender;
-        uint age;
+        uint8 age;
         string description;
         string hash;
         bool available;   
@@ -26,7 +26,7 @@ contract CatRescue {
 
     struct Customer {
         string gender;
-        uint age;
+        uint8 age;
         string name;
         string pet;
         uint adoptionTime;
@@ -38,7 +38,7 @@ contract CatRescue {
         adopted[msg.sender] = 0;
     }
 
-    function add(string memory _catName, string memory _catGender, uint _catAge, string memory _description, string memory _hash, bool _available) public {
+    function add(string memory _catName, string memory _catGender, uint8 _catAge, string memory _description, string memory _hash, bool _available) public {
         require(msg.sender == owner, "Sorry! Only the owner may shelter cats.");
 
         cat.push(Cat({
@@ -51,7 +51,7 @@ contract CatRescue {
         }));
     }
 
-    function adopt(string memory personName, string memory personGender, uint personAge, string memory _catsName, uint catIndex) public isAllowed(catIndex) returns(bool adoptionSuccess) {
+    function adopt(string memory personName, string memory personGender, uint8 personAge, string memory _catsName, uint8 catIndex) public isAllowed(catIndex) returns(bool adoptionSuccess) {
         require(adopted[msg.sender] == 0, "You already adopted!");
         require(keccak256(abi.encodePacked(_catsName)) == keccak256(abi.encodePacked(cat[catIndex].catsName)), "Sorry! Cat's name does not match with the index given");
 
@@ -65,7 +65,7 @@ contract CatRescue {
         return true;
     }
 
-    function returnCatToShelter(uint catIndex) public returns(bool returnSuccess) {
+    function returnCatToShelter(uint8 catIndex) public returns(bool returnSuccess) {
         returnExpiration = Customers[msg.sender].adoptionTime + 1 days;
         require(block.timestamp <= returnExpiration, "Returns must be within 24 hours of adoption!");
 
@@ -80,6 +80,7 @@ contract CatRescue {
     }
 
     function getDonationBalance() public view returns(uint256 donationTotal) {
+        require(msg.sender == owner, "Sorry! Only the owner may inquire the donation balance.");
         return balance;
     }
 
@@ -93,7 +94,7 @@ contract CatRescue {
         return cat.length;
     }
 
-    function getCat(uint256 catIndex) public view returns(string memory name, string memory gender, uint age, string memory description, string memory _hash, bool available) {
+    function getCat(uint8 catIndex) public view returns(string memory name, string memory gender, uint8 age, string memory description, string memory _hash, bool available) {
         Cat memory specificCat = cat[catIndex];
         return(specificCat.catsName, specificCat.gender, specificCat.age, specificCat.description, specificCat.hash, specificCat.available);
     }
